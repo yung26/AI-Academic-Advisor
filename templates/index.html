@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Academic Advisor</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            margin: 0;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #17365d;
+        }
+
+        .intro {
+            text-align: center;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin-top: 7px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            background: #17365d;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #24548b;
+        }
+
+        .result {
+            background: #e7f5e9;
+            padding: 18px;
+            margin-top: 25px;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        .error {
+            background: #fdeaea;
+            color: #a00000;
+            padding: 12px;
+            margin-top: 20px;
+            border-radius: 6px;
+        }
+
+        .footer {
+            text-align: center;
+            color: #777;
+            font-size: 12px;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>AI Academic Advisor</h1>
+
+    <p class="intro">
+        Enter your academic information to receive an
+        AI-generated suggestion for a computing field
+        you may wish to explore.
+    </p>
+
+    <form method="POST">
+
+        <label for="cgpa">CGPA (0–5)</label>
+        <input
+            type="number"
+            id="cgpa"
+            name="cgpa"
+            min="0"
+            max="5"
+            step="0.01"
+            required
+        >
+
+        <label for="programming">Programming Skill (1–5)</label>
+        <select id="programming" name="programming" required>
+            <option value="">Select your level</option>
+            <option value="1">1 - Beginner</option>
+            <option value="2">2 - Basic</option>
+            <option value="3">3 - Intermediate</option>
+            <option value="4">4 - Good</option>
+            <option value="5">5 - Excellent</option>
+        </select>
+
+        <label for="mathematics">Mathematics Skill (1–5)</label>
+        <select id="mathematics" name="mathematics" required>
+            <option value="">Select your level</option>
+            <option value="1">1 - Beginner</option>
+            <option value="2">2 - Basic</option>
+            <option value="3">3 - Intermediate</option>
+            <option value="4">4 - Good</option>
+            <option value="5">5 - Excellent</option>
+        </select>
+
+        <label for="study_hours">
+            Daily Study Hours (0–24)
+        </label>
+
+        <input
+            type="number"
+            id="study_hours"
+            name="study_hours"
+            min="0"
+            max="24"
+            step="0.5"
+            required
+        >
+
+        <button type="submit">
+            Get My Academic Recommendation
+        </button>
+
+    </form>
+
+    {% if recommendation %}
+        <div class="result">
+            <h2>Recommended Field</h2>
+
+            <h3>{{ recommendation.field }}</h3>
+
+            <p>{{ recommendation.advice }}</p>
+
+            <p>
+                This is a demonstration recommendation based
+                on a small sample dataset. Consider your
+                interests, course requirements, and advice
+                from an academic adviser before making decisions.
+            </p>
+        </div>
+    {% endif %}
+
+    {% if message %}
+        <div class="error">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <div class="footer">
+        CSC 303 Project | AI Academic Advisor System
+    </div>
+
+</div>
+
+</body>
+</html>
